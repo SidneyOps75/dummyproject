@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Learning Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1 { color: #333; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>P2P Learning Platform</h1>
+    <nav>
+        <a href="/blockchain">View Blockchain</a>
+        <a href="/new-session">New Learning Session</a>
+        <a href="/new-course">New Course</a>
+        {{if not .User}}
+<a href="/login">Login</a>
+<a href="/signup">Signup</a>
+{{else}}
+<span>Welcome, {{.User.Username}}</span>
+<a href="/logout">Logout</a>
+{{end}}
+    </nav>
+    <p>Welcome to our peer-to-peer learning platform powered by blockchain technology!</p>
+</body>
+</html>

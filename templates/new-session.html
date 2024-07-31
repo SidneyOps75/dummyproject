@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Learning Session</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1 { color: #333; }
+        form { max-width: 400px; }
+        label, input { display: block; margin-bottom: 10px; }
+        input[type="submit"] { background-color: #007bff; color: white; border: none; padding: 10px 15px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>New Learning Session</h1>
+    <form id="sessionForm">
+        <label for="mentorId">Mentor ID:</label>
+        <input type="text" id="mentorId" name="mentorId" required>
+
+        <label for="learnerId">Learner ID:</label>
+        <input type="text" id="learnerId" name="learnerId" required>
+
+        <label for="courseId">Course ID:</label>
+        <input type="text" id="courseId" name="courseId" required>
+
+        <label for="startTime">Start Time:</label>
+        <input type="datetime-local" id="startTime" name="startTime" required>
+
+        <label for="endTime">End Time:</label>
+        <input type="datetime-local" id="endTime" name="endTime" required>
+
+        <label for="tokensEarned">Tokens Earned:</label>
+        <input type="number" id="tokensEarned" name="tokensEarned" required>
+
+        <input type="submit" value="Create Session">
+    </form>
+
+    <script>
+        document.getElementById('sessionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            fetch('/session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Session created successfully!');
+                this.reset();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error creating session');
+            });
+        });
+    </script>
+</body>
+</html>

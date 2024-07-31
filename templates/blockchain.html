@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Blockchain</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1 { color: #333; }
+        #blockchain { white-space: pre-wrap; background-color: #f4f4f4; padding: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Blockchain View</h1>
+    <div id="blockchain"></div>
+
+    <script>
+        fetch('/blockchain')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('blockchain').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
